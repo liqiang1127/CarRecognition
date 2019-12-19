@@ -2,6 +2,7 @@ import argparse
 import logging
 import pandas as pd
 import torch
+from export_model import ext_model
 
 
 def clip_gradient(optimizer, grad_clip):
@@ -27,6 +28,7 @@ def save_checkpoint(name, epoch, epochs_since_improvement, model, optimizer, acc
     # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
     if is_best:
         torch.save(state, "./checkpoint/" + "BEST_" + name + ".tar")
+        ext_model()
 
 
 class AverageMeter(object):

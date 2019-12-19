@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.init as init
 import torchvision.models as models
-from torchscope import scope
 from config import device
 
 word_embedding_dim = 2048
