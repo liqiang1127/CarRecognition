@@ -22,7 +22,7 @@ def train(args):
     else:
         checkpoint = torch.load(checkpoint)
         start_epoch = checkpoint['epoch'] + 1
-        epochs_since_improvement = checkpoint['epoch_since_improvement']
+        epochs_since_improvement = checkpoint['epochs_since_improvement']
         model = checkpoint['model']
         optimizer = checkpoint['optimizer']
 
