@@ -19,7 +19,7 @@ model.eval().to(device)
 def main(args):
     # 读取图片
     ret = []
-    for index in range(10):
+    for index in range(6):
         filename = "pic" + str(index+1) + '.jpg'
         file_path = os.path.join(args.src, filename)
         image = Image.open(file_path)
