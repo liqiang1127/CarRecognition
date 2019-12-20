@@ -20,8 +20,8 @@ class CarRecognitionNet(nn.Module):
     def __init__(self):
         super(CarRecognitionNet, self).__init__()
         # 加载在imagenet上预训练好的模型
-        model = models.resnet101(pretrained=False)
-        model.load_state_dict(torch.load("./resnet_pth/resnet152.pth"))
+        model = models.resnet50(pretrained=True)
+        # model.load_state_dict(torch.load("./resnet_pth/resnet152.pth"))
         # 去除最后2层
         self.resnet = remove_last(model)
 
