@@ -11,17 +11,15 @@ from net import CarRecognitionNet
 
 # 通过label2索引到结果的车型值
 dic = {'0': 11, '1': 12, '2': 13, '3': 14, '4': 21, '5': 22, '6': 23, '7': 24, '8': 25, '9': 26}
-model = CarRecognitionNet()
-model.load_state_dict(torch.load("./model/final_model.tar"))
-model.eval().to(device)
 
 
-def main(args):
+def main(model):
     # 读取图片
     ret = []
+    model.eval()
     for index in range(6):
         filename = "pic" + str(index+1) + '.jpg'
-        file_path = os.path.join(args.src, filename)
+        file_path = os.path.join("./test", filename)
         image = Image.open(file_path)
         image = data_transforms['valid'](image)
         image = image.to(device)
@@ -39,9 +37,13 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--src", type=str, required=True)
+    parser.add_argument("--checkpoint", type=str, required=True)
     args = parser.parse_args()
-    ret = main(args)
+    checkpoint = torch.load(args.checkpoint)
+    model = checkpoint['model']
+    # optimizer = checkpoint['optimizer']
+    print("以加载模型, acc = {}".format(checkpoint['acc']))
+    ret = main(model)
     result = []
     for i in ret:
         result.append(dic[str(i)])

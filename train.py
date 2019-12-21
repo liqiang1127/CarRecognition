@@ -61,7 +61,7 @@ def train(args):
         else:
             epochs_since_improvement = 0
             # Save checkpoint
-        save_checkpoint("OURS", epoch, epochs_since_improvement, model, optimizer, best_acc, is_best)
+        save_checkpoint("OURS_RES50", epoch, epochs_since_improvement, model, optimizer, best_acc, is_best)
 
 
 def __train(train_loader, model, optimizer, epoch, logger):
